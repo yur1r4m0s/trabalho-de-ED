@@ -230,3 +230,75 @@ VERTICE * remover(VERTICE * aux, int id, int cpf_resp){
         return 0;
     }
 }
+
+void remover_fila(){
+    if(tam_fila == 0){
+        printf(VERMELHO"A lista esta vazia"RESET"\n");
+    }else{
+        fila * lixo = inicio_fila;
+        printf(VERDE"Encomenda de %s - Id: %d foi retirado"RESET"\n", inicio_fila->nome_aluno, inicio_fila->id);
+        if(tam_fila == 1){
+            inicio_fila = NULL;
+            fim_fila = NULL;
+        }else{
+            inicio_fila = inicio_fila->prox;
+            inicio_fila->ant = NULL;
+        }
+        free(lixo);
+        tam_fila--;    
+    }
+}
+
+void ver_fila(){
+    if(tam_fila > 0){
+        fila * aux = inicio_fila;
+        printf("----FILA----\n");
+        for(int i = 0; i < tam_fila; i++){ 
+            printf(VERMELHO"-------------------------------"RESET"\n");
+            printf("id: %d\nNome: %s\nMatricula: %d\nDescricao: %s\nResponsavel: %s\nCampus origem: %s\nCampus destino: %s\nPrioridade: "VERDE"%d"RESET"\n", aux->id, aux->nome_aluno, aux->matricula, aux->descricao,buscar_resp(aux->responsavel),aux->campus_origem, aux->campus_destino, aux->prioridade);
+            aux = aux->prox;
+        }
+        printf(VERMELHO"------------------------------'"RESET"\n");
+    }else{
+        printf(VERMELHO"A fila esta vazia"RESET"\n");
+    }
+}
+
+int login(int cargo){
+    int cpf;
+    int senha;
+
+    printf("----LOGIN----\n");
+    printf("Cpf: ");
+    scanf("%d",&cpf);
+    printf("Senha: ");
+    scanf("%d",&senha);
+
+    funcionario * aux_fun = inicio_fun;
+
+    for(int i=0; i < tam_fun; i++){
+        if(aux_fun->cpf_fun == cpf && aux_fun->senha_fun == senha){
+            if(aux_fun->cargo == cargo || aux_fun->cargo == 3){
+                system("clear");
+                printf(VERDE"Bem vindo(a) %s"RESET"\n", aux_fun->nome_fun);
+                return cpf;
+            }else{
+                if(cargo == 1){
+                    system("clear");
+                    printf(VERMELHO"Apenas Transportadores podem fazer isso"RESET"\n");
+                    return 1;
+                }else if(cargo == 2){
+                    system("clear");
+                    printf(VERMELHO"Apenas Secretarios podem fazer isso"RESET"\n");
+                    return 1;
+                }else if(cargo == 3){
+                    system("clear");
+                    printf(VERMELHO"Apenas Gerentes podem fazer isso"RESET"\n");
+                    return 1;
+                }
+            }
+        }
+        aux_fun = aux_fun->prox;
+    }
+    return 0;
+}
