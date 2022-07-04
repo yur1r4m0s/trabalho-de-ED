@@ -82,6 +82,7 @@ char * buscar_resp(int cpf_resp){
     }
     return "0";
 }
+
 int cadastrar_encomenda(int id){
     VERTICE * busca = buscar(id, raiz);
     if(busca == NULL || busca->id != id){// vazia OU a adição é permitida porquê o busca->ID é diferente do X    
@@ -116,6 +117,7 @@ int cadastrar_encomenda(int id){
         return 0;
     }
 }
+
 void add_funcionario(char * nome, int cpf, int senha, int cargo){
     funcionario * novo_fun = malloc(sizeof(funcionario));
     novo_fun->nome_fun = nome;
@@ -133,6 +135,7 @@ void add_funcionario(char * nome, int cpf, int senha, int cargo){
     }
     tam_fun++;
 }
+
 void add_fila(int id, char * nome_aluno, int matricula, char * descricao, int cpf_resp){
     fila * novo = malloc(sizeof(fila));
     novo->id = id;
@@ -181,6 +184,7 @@ void add_fila(int id, char * nome_aluno, int matricula, char * descricao, int cp
     tam_fila++;
     system("clear");
 }
+
 VERTICE * remover(VERTICE * aux, int id, int cpf_resp){
     if(raiz != NULL){
         VERTICE * busca = buscar(id, raiz);
@@ -263,6 +267,7 @@ void ver_fila(){
         printf(VERMELHO"A fila esta vazia"RESET"\n");
     }
 }
+
 int login(int cargo){
     int cpf;
     int senha;
