@@ -263,7 +263,6 @@ void ver_fila(){
         printf(VERMELHO"A fila esta vazia"RESET"\n");
     }
 }
-
 int login(int cargo){
     int cpf;
     int senha;
