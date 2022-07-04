@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "funcoes_lib.h"
+#include "funcoes.h"
   
 int main(){
     menu();
